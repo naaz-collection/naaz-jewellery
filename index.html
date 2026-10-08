@@ -88,21 +88,40 @@
 
          /* HERO */
          .hero {
-            min-height: 85vh;
-            background: linear-gradient(
-                  rgba(0, 0, 0, 0.35),
-                  rgba(0, 0, 0, 0.35)
-               ),
-               url("images/hero.jpg");
-            background-size: cover;
-            background-position: center;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 30px;
-         }
+   min-height: 85vh;
+   position: relative;
+   overflow: hidden;
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   text-align: center;
+   color: white;
+   padding: 30px;
+}
+
+.hero video {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   z-index: 0;
+}
+
+/* Video ke upar dark overlay */
+.hero::before {
+   content: "";
+   position: absolute;
+   inset: 0;
+   background: rgba(0, 0, 0, 0.35);
+   z-index: 1;
+}
+
+.hero-content {
+   position: relative;
+   z-index: 2;
+}
 
          .hero-content h1 {
             font-size: 60px;
@@ -437,14 +456,21 @@
 
       <!-- HERO -->
       <section class="hero" id="home">
-         <div class="hero-content">
-            <h1>Timeless Elegance</h1>
 
-            <p>Discover jewellery that tells your beautiful story.</p>
+   <video autoplay muted loop playsinline>
+      <source src="images/video.mp4" type="video/mp4">
+      Your browser does not support the video tag.
+   </video>
 
-            <a href="#collection" class="btn"> Explore Collection </a>
-         </div>
-      </section>
+   <div class="hero-content">
+      <h1>NAAZ Jewellery</h1>
+
+      <p>Discover jewellery that tells your beautiful story.</p>
+
+      <a href="#collection" class="btn">Explore Collection</a>
+   </div>
+
+</section>
 
       <!-- CATEGORIES -->
       <section id="categories">
