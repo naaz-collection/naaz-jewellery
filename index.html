@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>NAAZ Jewellery</title>
+
+      <style>
+         * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+
+            #necklaceSlider {
+               width: 100%;
+               height: 230px;
+               object-fit: cover;
+               transition: opacity 0.3s ease-in-out;
+               cursor: pointer;
+            }
+
+            #earringSlider {
+               width: 100%;
+               height: 230px;
+               object-fit: cover;
+               transition: opacity 0.3s ease-in-out;
+               cursor: pointer;
+            }
+            #ringSlider {
+               width: 100%;
+               height: 230px;
+               object-fit: cover;
+               transition: opacity 0.3s ease-in-out;
+               cursor: pointer;
+            }
+
+            #braceletSlider {
+               width: 100%;
+               height: 230px;
+               object-fit: cover;
+               transition: opacity 0.3s ease-in-out;
+               cursor: pointer;
+            }
+         }
+
+         html {
+            scroll-behavior: smooth;
+         }
+
+         body {
+            background: #fffaf5;
+            color: #333;
+         }
+
+         /* NAVBAR */
+         header {
+            width: 100%;
+            background: #fff;
+            padding: 18px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+         }
+
+         .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #b8860b;
+            letter-spacing: 2px;
+         }
+
+         nav a {
+            text-decoration: none;
+            color: #333;
+            margin-left: 30px;
+            font-size: 16px;
+            transition: 0.3s;
+         }
+
+         nav a:hover {
+            color: #b8860b;
+         }
+
+         /* HERO */
+         .hero {
+            min-height: 85vh;
+            background: linear-gradient(
+                  rgba(0, 0, 0, 0.35),
+                  rgba(0, 0, 0, 0.35)
+               ),
+               url("images/hero.jpg");
+            background-size: cover;
+            background-position: center;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            padding: 30px;
+         }
+
+         .hero-content h1 {
+            font-size: 60px;
+            margin-bottom: 20px;
+            font-family: Georgia, serif;
+         }
+
+         .hero-content p {
+            font-size: 20px;
+            margin-bottom: 30px;
+         }
+
+         .btn {
+            display: inline-block;
+            background: #c79a24;
+            color: white;
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: 0.3s;
+         }
+
+         .btn:hover {
+            background: #a77c13;
+         }
+
+         /* COMMON SECTION */
+         section {
+            padding: 70px 8%;
+         }
+
+         .section-title {
+            text-align: center;
+            margin-bottom: 45px;
+         }
+
+         .section-title h2 {
+            font-size: 38px;
+            color: #8d6814;
+            font-family: Georgia, serif;
+         }
+
+         .section-title p {
+            margin-top: 10px;
+            color: #777;
+         }
+
+         /* CATEGORIES */
+         .categories {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+         }
+
+         .category {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            text-align: center;
+            transition: 0.3s;
+         }
+
+         .category:hover {
+            transform: translateY(-8px);
+         }
+
+         .category img {
+            width: 100%;
+            height: 230px;
+            object-fit: cover;
+         }
+
+         .category h3 {
+            padding: 20px;
+            color: #8d6814;
+         }
+
+         /* PRODUCTS */
+         .products {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+         }
+
+         .product {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+            transition: 0.3s;
+         }
+
+         .product:hover {
+            transform: translateY(-8px);
+         }
+
+         .product img {
+            width: 100%;
+            height: 280px;
+            object-fit: cover;
+         }
+
+         .product-info {
+            padding: 20px;
+         }
+
+         .product-info h3 {
+            color: #555;
+            margin-bottom: 8px;
+         }
+
+         .price {
+            color: #b8860b;
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+         }
+
+         .small-btn {
+            display: inline-block;
+            padding: 9px 18px;
+            border: 1px solid #b8860b;
+            color: #b8860b;
+            text-decoration: none;
+            border-radius: 4px;
+         }
+
+         .small-btn:hover {
+            background: #b8860b;
+            color: white;
+         }
+
+         /* ABOUT */
+         .about {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+            background: #f7eee1;
+         }
+
+         .about img {
+            width: 100%;
+            border-radius: 10px;
+         }
+
+         .about-text h2 {
+            font-family: Georgia, serif;
+            color: #8d6814;
+            font-size: 38px;
+            margin-bottom: 20px;
+         }
+
+         .about-text p {
+            line-height: 1.8;
+            color: #666;
+            margin-bottom: 20px;
+         }
+
+         /* TESTIMONIALS */
+         .testimonials {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+         }
+
+         .review {
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+         }
+
+         .stars {
+            color: #d4a72c;
+            font-size: 20px;
+            margin-bottom: 15px;
+         }
+
+         .review p {
+            line-height: 1.7;
+            color: #666;
+         }
+
+         .review h4 {
+            margin-top: 15px;
+            color: #8d6814;
+         }
+
+         /* CONTACT */
+         .contact {
+            background: #2f251b;
+            color: white;
+            text-align: center;
+         }
+
+         .contact h2 {
+            font-family: Georgia, serif;
+            font-size: 38px;
+            color: #e4bd58;
+            margin-bottom: 15px;
+         }
+
+         .contact p {
+            margin: 10px 0;
+            color: #ddd;
+         }
+
+         /* WHATSAPP CONTACT BUTTON */
+         .whatsapp-btn {
+            display: inline-block;
+            background: #25d366;
+            color: white;
+            padding: 14px 28px;
+            margin-top: 15px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: 0.3s;
+         }
+
+         .whatsapp-btn:hover {
+            background: #128c7e;
+            transform: translateY(-2px);
+         }
+
+         /* FLOATING WHATSAPP BUTTON */
+         .whatsapp-float {
+            position: fixed;
+            width: 62px;
+            height: 62px;
+            bottom: 25px;
+            right: 25px;
+            background: #25d366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 32px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            z-index: 9999;
+            transition: 0.3s;
+         }
+
+         .whatsapp-float:hover {
+            background: #128c7e;
+            transform: scale(1.1);
+         }
+
+         /* FOOTER */
+         footer {
+            background: #1d1712;
+            color: #aaa;
+            text-align: center;
+            padding: 20px;
+         }
+
+         /* RESPONSIVE */
+         @media (max-width: 900px) {
+            .categories,
+            .products {
+               grid-template-columns: repeat(2, 1fr);
+            }
+
+            .about {
+               grid-template-columns: 1fr;
+            }
+
+            .testimonials {
+               grid-template-columns: 1fr;
+            }
+
+            .hero-content h1 {
+               font-size: 45px;
+            }
+         }
+
+         @media (max-width: 600px) {
+            header {
+               flex-direction: column;
+               gap: 15px;
+            }
+
+            nav a {
+               margin: 0 7px;
+               font-size: 14px;
+            }
+
+            .categories,
+            .products {
+               grid-template-columns: 1fr;
+            }
+
+            .hero {
+               min-height: 70vh;
+            }
+
+            .hero-content h1 {
+               font-size: 38px;
+            }
+
+            section {
+               padding: 50px 5%;
+            }
+
+            .whatsapp-float {
+               width: 55px;
+               height: 55px;
+               font-size: 28px;
+               right: 18px;
+               bottom: 18px;
+            }
+         }
+      </style>
+   </head>
+
+   <body>
+      <!-- NAVBAR -->
+      <header>
+         <div class="logo">NAAZ UNIQUE COLLECTION</div>
+
+         <nav>
+            <a href="#home">Home</a> <a href="#categories">Categories</a>
+            <a href="#collection">Collection</a> <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+         </nav>
+      </header>
+
+      <!-- HERO -->
+      <section class="hero" id="home">
+         <div class="hero-content">
+            <h1>Timeless Elegance</h1>
+
+            <p>Discover jewellery that tells your beautiful story.</p>
+
+            <a href="#collection" class="btn"> Explore Collection </a>
+         </div>
+      </section>
+
+      <!-- CATEGORIES -->
+      <section id="categories">
+         <div class="section-title">
+            <h2>Shop By Category</h2>
+            <p>Find the perfect jewellery for every occasion.</p>
+         </div>
+
+         <div class="categories">
+            <div class="category">
+               <img
+                  id="necklaceSlider"
+                  src="images/necklaces/1.jpeg"
+                  alt="Necklaces"
+               />
+               <h3>Necklaces</h3>
+            </div>
+
+            <div class="category">
+               <img
+                  id="earringSlider"
+                  src="images/earring/1.jpeg"
+                  alt="Earrings"
+               />
+               <h3>Earrings</h3>
+            </div>
+
+            <div class="category">
+               <img id="ringSlider" src="images/rings/1.jpeg" alt="Rings" />
+               <h3>Rings</h3>
+            </div>
+
+            <div class="category">
+               <img
+                  id="braceletSlider_1"
+                  src="images/bracelet/1.jpeg"
+                  alt="Bracelets"
+               />
+               <h3>Bracelets</h3>
+            </div>
+         </div>
+      </section>
+
+      <!-- PRODUCTS -->
+      <section id="collection">
+         <div class="section-title">
+            <h2>Featured Collection</h2>
+            <p>Our most loved jewellery pieces.</p>
+         </div>
+
+         <div class="products">
+            <div class="product">
+               <img
+                  src="images/future_collection/necklace.jpeg"
+                  alt="Golden Pearl Necklace"
+               />
+
+               <div class="product-info">
+                  <h3>Golden Pearl Necklace</h3>
+
+                  <a href="#contact" class="small-btn"> View Details </a>
+               </div>
+            </div>
+
+            <div class="product">
+               <img
+                  src="images/future_collection/earrings.jpeg"
+                  alt="Elegant Diamond Earrings"
+               />
+
+               <div class="product-info">
+                  <h3>Elegant Diamond Earrings</h3>
+
+                  <a href="#contact" class="small-btn"> View Details </a>
+               </div>
+            </div>
+
+            <div class="product">
+               <img
+                  src="images/future_collection/gold_ring.jpeg"
+                  alt="Classic Gold Ring"
+               />
+
+               <div class="product-info">
+                  <h3>Classic Gold Ring</h3>
+
+                  <a href="#contact" class="small-btn"> View Details </a>
+               </div>
+            </div>
+
+            <div class="product">
+               <img
+                  src="images/future_collection/bracelet.jpeg"
+                  alt="Luxury Gold Bracelet"
+               />
+
+               <div class="product-info">
+                  <h3>Luxury Gold Bracelet</h3>
+
+                  <a href="#contact" class="small-btn"> View Details </a>
+               </div>
+            </div>
+         </div>
+      </section>
+
+      <!-- ABOUT -->
+      <section class="about" id="about">
+         <div>
+            <img
+               src="images/future_collection/about.jpeg"
+               alt="NAAZ Jewellery"
+            />
+         </div>
+
+         <div class="about-text">
+            <h2>Crafted With Love</h2>
+
+            <p>
+               At NAAZ, we believe jewellery is more than an accessory. It is a
+               celebration of love, memories and unforgettable moments.
+            </p>
+
+            <p>
+               Every piece is carefully designed with attention to detail,
+               combining timeless beauty with modern elegance.
+            </p>
+
+            <a href="#contact" class="btn"> Know More </a>
+         </div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section>
+         <div class="section-title">
+            <h2>What Our Customers Say</h2>
+
+            <p>Beautiful words from our happy customers.</p>
+         </div>
+
+         <div class="testimonials">
+            <div class="review">
+               <div class="stars">★★★★★</div>
+
+               <p>
+                  "The necklace was absolutely beautiful. The quality exceeded
+                  my expectations."
+               </p>
+
+               <h4>— Sahar Ansari</h4>
+            </div>
+
+            <div class="review">
+               <div class="stars">★★★★★</div>
+
+               <p>
+                  "I bought earrings for my anniversary and they looked
+                  stunning. Highly recommended!"
+               </p>
+
+               <h4>— Ananya Gupta</h4>
+            </div>
+
+            <div class="review">
+               <div class="stars">★★★★★</div>
+
+               <p>
+                  "Amazing designs, premium quality and beautiful packaging.
+                  Loved the experience."
+               </p>
+
+               <h4>— Hiba Khan</h4>
+            </div>
+         </div>
+      </section>
+
+      <!-- CONTACT -->
+      <section class="contact" id="contact">
+         <h2>Get In Touch</h2>
+
+         <p>Looking for something special?</p>
+
+         <p>Email: hello@naazjewellery.com</p>
+
+         <p>Phone: +916398972865</p>
+
+         <!-- WHATSAPP BUTTON -->
+         <a
+            href="https://wa.me/916398972865?text=Hello%20NAAZ%20Jewellery,%20mujhe%20aapke%20products%20ke%20baare%20mein%20jaankari%20chahiye."
+            target="_blank"
+            class="whatsapp-btn"
+         >
+            💬 Chat on WhatsApp
+         </a>
+      </section>
+
+      <!-- FOOTER -->
+      <footer>
+         <p>© 2026 NAAZ Jewellery. All Rights Reserved.</p>
+      </footer>
+
+      <!-- FLOATING WHATSAPP BUTTON -->
+      <a
+         href="https://wa.me/916398972865?text=Hello%20NAAZ%20Jewellery"
+         target="_blank"
+         class="whatsapp-float"
+         aria-label="Chat on WhatsApp"
+      >
+         💬
+      </a>
+
+
+<script>
+   // =========================
+   // NECKLACE SLIDER
+   // =========================
+   let necklaceIndex = 1;
+   let necklaceTimer;
+
+   const necklaceSlider = document.getElementById("necklaceSlider");
+
+   function changeNecklace() {
+      necklaceIndex++;
+
+      if (necklaceIndex > 42) {
+         necklaceIndex = 1;
+      }
+
+      necklaceSlider.style.opacity = "0";
+
+      setTimeout(() => {
+         necklaceSlider.src =
+            "images/necklaces/" + necklaceIndex + ".jpeg";
+         necklaceSlider.style.opacity = "1";
+      }, 300);
+   }
+
+   function startNecklaceSlider() {
+      clearInterval(necklaceTimer);
+      necklaceTimer = setInterval(changeNecklace, 4000);
+   }
+
+   function stopNecklaceSlider() {
+      clearInterval(necklaceTimer);
+   }
+
+   necklaceSlider.addEventListener("mouseenter", stopNecklaceSlider);
+   necklaceSlider.addEventListener("mouseleave", startNecklaceSlider);
+
+   startNecklaceSlider();
+
+
+   // =========================
+   // EARRING SLIDER
+   // =========================
+   let earringIndex = 1;
+   let earringTimer;
+
+   const earringSlider = document.getElementById("earringSlider");
+
+   function changeEarring() {
+      earringIndex++;
+
+      if (earringIndex > 3) {
+         earringIndex = 1;
+      }
+
+      earringSlider.style.opacity = "0";
+
+      setTimeout(() => {
+         earringSlider.src =
+            "images/earring/" + earringIndex + ".jpeg";
+         earringSlider.style.opacity = "1";
+      }, 300);
+   }
+
+   function startEarringSlider() {
+      clearInterval(earringTimer);
+      earringTimer = setInterval(changeEarring, 5000);
+   }
+
+   function stopEarringSlider() {
+      clearInterval(earringTimer);
+   }
+
+   earringSlider.addEventListener("mouseenter", stopEarringSlider);
+   earringSlider.addEventListener("mouseleave", startEarringSlider);
+
+   startEarringSlider();
+
+
+   // =========================
+   // RING SLIDER
+   // =========================
+   let ringIndex = 1;
+   let ringTimer;
+
+   const ringSlider = document.getElementById("ringSlider");
+
+   function changeRing() {
+      ringIndex++;
+
+      if (ringIndex > 2) {
+         ringIndex = 1;
+      }
+
+      ringSlider.style.opacity = "0";
+
+      setTimeout(() => {
+         ringSlider.src =
+            "images/rings/" + ringIndex + ".jpeg";
+         ringSlider.style.opacity = "1";
+      }, 300);
+   }
+
+   function startRingSlider() {
+      clearInterval(ringTimer);
+      ringTimer = setInterval(changeRing, 7000);
+   }
+
+   function stopRingSlider() {
+      clearInterval(ringTimer);
+   }
+
+   ringSlider.addEventListener("mouseenter", stopRingSlider);
+   ringSlider.addEventListener("mouseleave", startRingSlider);
+
+   startRingSlider();
+
+
+   // =========================
+   // BRACELET SLIDER
+   // =========================
+   let braceletIndex = 1;
+   let braceletTimer;
+
+   const braceletSlider = document.getElementById("braceletSlider");
+
+   function changeBracelet() {
+      braceletIndex++;
+
+      if (braceletIndex > 1) {
+         braceletIndex = 1;
+      }
+
+      braceletSlider.style.opacity = "0";
+
+      setTimeout(() => {
+         braceletSlider.src =
+            "images/bracelet/" + braceletIndex + ".jpeg";
+         braceletSlider.style.opacity = "1";
+      }, 9000);
+   }
+
+   function startBraceletSlider() {
+      clearInterval(braceletTimer);
+      braceletTimer = setInterval(changeBracelet, 5000);
+   }
+
+   function stopBraceletSlider() {
+      clearInterval(braceletTimer);
+   }
+
+   braceletSlider.addEventListener("mouseenter", stopBraceletSlider);
+   braceletSlider.addEventListener("mouseleave", startBraceletSlider);
+
+   startBraceletSlider();
+</script>
+      
+   </body>
+</html>
